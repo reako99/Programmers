@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Solution {
     /*
     *문제 설명
@@ -29,7 +32,7 @@ target인 "cog"는 words 안에 없기 때문에 변환할 수 없습니다.
     public static void main(String[] args) {
         String begin = "hit";
         String target = "cog";
-        String[] words = {"hot", "dot", "dog", "lot", "log", "cog"};
+        String[] words = {"hot", "dot", "dog", "lot", "log"};
 
         System.out.print(solution(begin, target, words));
 
@@ -43,9 +46,49 @@ target인 "cog"는 words 안에 없기 때문에 변환할 수 없습니다.
         }
         System.out.println("]");
 
+        Queue<Integer> queue = new LinkedList<>();
+        int[] visited = new int[words.length];
         int len = begin.length();
-        
         int answer = 0;
-        return answer;
+
+
+        for(int i=0; i<words.length; i++){
+            if(visited[i] == 0 && diff(begin, words[i])){
+                queue.offer(i);
+                visited[i]=1;
+            }
+        }
+
+        while(!queue.isEmpty()){
+            int curIdx = queue.poll();
+            String curStr = words[curIdx];
+
+            if(curStr.equals(target)){
+                return visited[curIdx];
+            }
+
+            for(int j = 0; j < words.length; j++){
+                if(visited[j]==0&& diff(curStr, words[j])){
+                    queue.offer(j);
+                    visited[j] = visited[curIdx] + 1 ;
+                }
+            }
+        }
+
+        return 0 ;
+    }
+
+    private static boolean diff(String str1, String str2) {
+        int diff = 0;
+
+        for(int i = 0 ; i < str1.length(); i++){
+            if(str1.charAt(i)!=str2.charAt(i)){
+                diff++;
+            }
+            if(diff>1){
+                return false;
+            }
+        }
+        return diff==1;
     }
 }
