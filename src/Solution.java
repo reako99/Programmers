@@ -38,14 +38,7 @@ target인 "cog"는 words 안에 없기 때문에 변환할 수 없습니다.
 
     }
     public static int solution(String begin, String target, String[] words) {
-        System.out.println("begin = " + begin);
-        System.out.println("target = " + target);
-        System.out.println("words = [");
-        for (String word : words){
-            System.out.println("word = " + word);
-        }
-        System.out.println("]");
-
+        
         Queue<Integer> queue = new LinkedList<>();
         int[] visited = new int[words.length];
         int len = begin.length();
