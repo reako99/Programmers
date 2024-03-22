@@ -38,7 +38,7 @@ target인 "cog"는 words 안에 없기 때문에 변환할 수 없습니다.
 
     }
     public static int solution(String begin, String target, String[] words) {
-        
+
         Queue<Integer> queue = new LinkedList<>();
         int[] visited = new int[words.length];
         int len = begin.length();
