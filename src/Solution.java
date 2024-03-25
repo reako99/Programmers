@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Solution {
     /*
     *문제 설명
@@ -38,6 +41,8 @@ numbers	target	return
 
     }
     public static int solution(int[] numbers, int target) {
+        List<Integer> result = new ArrayList<>();
+
         int answer = 0;
         return answer;
     }
