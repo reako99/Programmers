@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class Solution {
     /*
@@ -34,16 +36,42 @@ numbers	target	return
 총 2가지 방법이 있으므로, 2를 return 합니다.
     * */
     public static void main(String[] args) {
-        int[] numbers = {};
-        int target = 0;
+        int[] numbers = {4, 1, 2, 1};
+        int target = 4;
 
         System.out.print(solution(numbers, target));
 
     }
     public static int solution(int[] numbers, int target) {
-        List<Integer> result = new ArrayList<>();
-
+        Queue<Integer> list = new LinkedList<>();
+        Queue<Integer> result = new LinkedList<>();
+        for(int number:numbers){
+            list.add(number);
+        }
+        while(!list.isEmpty()){
+            int num = list.poll();
+            if (result.isEmpty()){
+                result.add(num);
+                result.add(-1*num);
+            }
+            else {
+                int size = result.size();
+                for(int i = 0; i < size; i++){
+                    int x = result.poll();
+                    result.add(x+num);
+                    result.add(x-num);
+                }
+            }
+            System.out.println("num = " + num);
+            System.out.println("list = " + list);
+            System.out.println("result = " + result);
+        }
         int answer = 0;
+        while(!result.isEmpty()){
+            if(result.poll()==target){
+                answer++;
+            }
+        }
         return answer;
     }
 
