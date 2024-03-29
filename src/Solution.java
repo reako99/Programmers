@@ -68,6 +68,7 @@ data에서 ext 값이 val_ext보다 작은 데이터만 뽑은 후, sort_by에 �
                 break;
         }
         
+        
         return answer;
     }
 
